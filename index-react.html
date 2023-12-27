@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div id="app"></div>
+        <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/jsx">
+            const app = document.getElementById('app')
+
+            function Header(props) {
+                return <h1>{props.title}</h1>
+            }
+
+            function HomePage() {
+                const tasks = [
+                    'タスク1',
+                    'タスク2',
+                    'タスク3'
+                ]
+
+                const [status, startTask] = React.useState('未着手')
+                function handleStartTask() {
+                    startTask('対応中')
+                }
+                return (
+                    <div>
+                        <Header title="タスク一覧" />
+                        <h2>{status}</h2>
+                        <ul>
+                            {tasks.map((task) => (
+                                <li key={task}>{task}</li>    
+                            ))}
+                        </ul>
+                        <button onClick={handleStartTask}>対応開始</button>
+                    </div>
+                )
+            }
+
+            ReactDOM.render(<HomePage />, app)
+        </script>
+    </body>
+</html>
